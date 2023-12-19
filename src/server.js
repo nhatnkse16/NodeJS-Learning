@@ -8,25 +8,19 @@ const webRoutes = require('./routes/web');
 const connection = require('./config/database')
 
 const app = express();                              //app express
+
 const port = process.env.PORT || 8888;              //port
 const hostname = process.env.HOST_NAME;
+
+/* Config req.body */
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded()); //Parse URL-encoded bodies
 
 /* Config template engine */
 configViewEngine(app);
 
 /* Config template engine */
 app.use('/', webRoutes);
-
-
-// simple query
-connection.query(
-    'select * from `Users`;',
-    function (err, results, fields) {
-        console.log('>>>result>>> ', results); // results contains rows returned by server
-        console.log('>>>fields>>> ', fields); // fields contains extra meta data about results, if available
-    }
-);
-
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
