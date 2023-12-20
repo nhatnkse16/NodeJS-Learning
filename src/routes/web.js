@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getHomePage, samplePage, addUser } = require('../controllers/homeController');
+const { getHomePage, samplePage, addUser, getUser, getEditUser, submitEditUser, deleteUser } = require('../controllers/homeController');
 
 /*************************
  * Khai báo route
@@ -17,7 +17,17 @@ const { getHomePage, samplePage, addUser } = require('../controllers/homeControl
 /* router.Method('/route',handler) */
 
 router.get('/', getHomePage);
+
 router.get('/sample', samplePage);
+
+router.get('/user', getUser);
+
 router.post('/addUser', addUser);
+
+router.get('/edit/:id', getEditUser);
+
+router.post('/submitEdit/:id', submitEditUser);
+
+router.get('/delete', deleteUser);
 
 module.exports = router;

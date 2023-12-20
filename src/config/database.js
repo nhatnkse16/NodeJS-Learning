@@ -6,9 +6,8 @@ const db_port = process.env.DB_PORT;
 const db_password = process.env.DB_PASSWORD;
 const db_database = process.env.DB_DATABASE;
 
-/* Test connection */
 /* get the client */
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
 /* create the connection to database */
 // const connection = mysql.createConnection({
@@ -34,5 +33,14 @@ const connection = mysql.createPool({
     enableKeepAlive: true,
     keepAliveInitialDelay: 0
 });
+
+// Kiểm tra kết nối
+// connection.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to database: ', err);
+//         return;
+//     }
+//     console.log('Connected to database');
+// });
 
 module.exports = connection;
