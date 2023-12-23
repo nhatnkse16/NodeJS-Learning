@@ -54,7 +54,14 @@ const editUserByID = async (email, fullName, address, idUser) => {
         [email, fullName, address, idUser]
     );
 
-    console.log('>>> Check result: ', results);
+    return results;
+}
+
+const deleteUserByID = async (idUser) => {
+    let [results, fields] = await connection.query(
+        `Delete from Users where id = ?;`,
+        [idUser]
+    );
 
     return results;
 }
@@ -63,5 +70,6 @@ module.exports = {
     getAllUsers,
     addNewUser,
     getUserByID,
-    editUserByID
+    editUserByID,
+    deleteUserByID
 }

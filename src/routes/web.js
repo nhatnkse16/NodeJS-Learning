@@ -28,6 +28,6 @@ router.get('/edit/:id', getEditUser);
 
 router.post('/submitEdit/:id', submitEditUser);
 
-router.get('/delete', deleteUser);
+router.get('/delete/:id', deleteUser);
 
 module.exports = router;

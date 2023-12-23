@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-const { getAllUsers, addNewUser, getUserByID, editUserByID } = require('../service/UsersCRUDService')
+const { getAllUsers, addNewUser, getUserByID, editUserByID, deleteUserByID } = require('../service/UsersCRUDService')
 
 
 
@@ -70,9 +70,12 @@ const submitEditUser = async (req, res) => {
 
 
 
-const deleteUser = (req, res) => {
+const deleteUser = async (req, res) => {
+    const idUser = req.params.id;
 
-    return res.redirect('user');
+    await deleteUserByID(idUser);
+
+    return res.redirect('/user');
 }
 
 
